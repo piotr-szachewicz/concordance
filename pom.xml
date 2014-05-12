@@ -1,0 +1,43 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.datasift</groupId>
+	<artifactId>concordance</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<configuration>
+					<source>1.5</source>
+					<target>1.5</target>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.dstovall</groupId>
+				<artifactId>onejar-maven-plugin</artifactId>
+				<version>1.4.1</version>
+
+				<executions>
+					<execution>
+						<configuration>
+							<filename>concordance.jar</filename>
+							<mainClass>com.datasift.ConcordanceProcessor</mainClass>
+							<!-- Optional, default is false -->
+							<attachToBuild>true</attachToBuild>
+							<!-- Optional, default is "onejar" -->
+							<classifier>onejar</classifier>
+						</configuration>
+						<goals>
+							<goal>one-jar</goal>
+						</goals>
+					</execution>
+				</executions>
+
+			</plugin>
+		</plugins>
+	</build>
+</project>
