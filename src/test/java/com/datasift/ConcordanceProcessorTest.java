@@ -4,7 +4,6 @@ import static org.junit.Assert.assertEquals;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
@@ -22,16 +21,15 @@ public class ConcordanceProcessorTest {
 	protected String expectedOutput;
 	private ConcordanceProcessor concordanceProcessor;
 
-	protected static String[] TEST_FILE_BEGINNINGS = new String[] {
+	protected static String[] TEST_FILE_NAMES = new String[] {
 		"one_sentence", "two_sentences", "abbreviation", "quotation_marks",
 		"word_with_a_hyphen", "long_text", "appostrophes", "empty",
 		"one_word", "dot_only", "question_mark", "exclamation_mark" };
 
-	public ConcordanceProcessorTest(String fileNameBeginning)
+	public ConcordanceProcessorTest(String fileName)
 			throws IOException {
-		input = ResourceUtils.readResource(fileNameBeginning + "_input.txt");
-		expectedOutput = ResourceUtils.readResource(fileNameBeginning
-				+ "_expected_output.txt");
+		input = ResourceUtils.readResource("./input/" + fileName + ".txt");
+		expectedOutput = ResourceUtils.readResource("./expected_output/" + fileName + ".txt");
 		concordanceProcessor = new ConcordanceProcessor();
 	}
 
@@ -50,9 +48,9 @@ public class ConcordanceProcessorTest {
 	}
 
 	@Parameters(name = "{index}: {0})")
-	public static Collection<String[]> getFileNameBeginnings() {
+	public static Collection<String[]> getFileNamesParameters() {
 		List<String[]> parameters = new ArrayList<String[]>();
-		for (String fileBeginning : TEST_FILE_BEGINNINGS) {
+		for (String fileBeginning : TEST_FILE_NAMES) {
 			parameters.add(new String[] { fileBeginning });
 		}
 		return parameters;
