@@ -12,6 +12,11 @@
 			<version>4.5</version>
 			<scope>test</scope>
 		</dependency>
+		<dependency>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+			<version>2.4</version>
+		</dependency>
 	</dependencies>
 
 	<build>
@@ -34,7 +39,7 @@
 					<execution>
 						<configuration>
 							<filename>concordance.jar</filename>
-							<mainClass>com.datasift.ConcordanceProcessor</mainClass>
+							<mainClass>com.datasift.ConcordanceProcessorApplication</mainClass>
 							<!-- Optional, default is false -->
 							<attachToBuild>true</attachToBuild>
 							<!-- Optional, default is "onejar" -->

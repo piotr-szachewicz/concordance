@@ -15,8 +15,8 @@ import com.datasift.utils.ResourceUtils;
 @RunWith(Parameterized.class)
 public class ConcordanceProcessorTest {
 
-	private String input;
-	private String expectedOutput;
+	protected String input;
+	protected String expectedOutput;
 	private ConcordanceProcessor concordanceProcessor;
 
 	public ConcordanceProcessorTest(String fileNameBeginning)
@@ -28,14 +28,13 @@ public class ConcordanceProcessorTest {
 	}
 
 	@Test
-	public void test() {
-		String actualOutput = concordanceProcessor.process(input);
-		//
-		// System.out.println("INPUT: " + input + "#");
-		// System.out.println("EXPECTED: " + expectedOutput + "#");
-		// System.out.println("ACTUAL: " + actualOutput + "#");
-
+	public void testProcess() {
+		String actualOutput = processInput();
 		assertEquals(expectedOutput, actualOutput);
+	}
+
+	protected String processInput() {
+		return concordanceProcessor.process(input);
 	}
 
 	@Parameterized.Parameters

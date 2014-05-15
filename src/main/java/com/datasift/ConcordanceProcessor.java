@@ -12,7 +12,7 @@ public class ConcordanceProcessor {
 	private Concordance concordance;
 
 	public String process(String text) {
-		// StringTokenizer tokenizer = new StringTokenizer(input, " "); -
+		// StringTokenizer tokenizer = new StringTokenizer(input, " ");
 		// another possible solution would be to use StringTokenizer
 
 		this.text = text.toCharArray();
@@ -75,7 +75,4 @@ public class ConcordanceProcessor {
 		currentWord = new StringBuilder();
 	}
 
-	public static void main(String[] args) {
-		System.out.println("Test");
-	}
 }
