@@ -23,8 +23,9 @@ public class ConcordanceProcessorTest {
 	private ConcordanceProcessor concordanceProcessor;
 
 	protected static String[] TEST_FILE_BEGINNINGS = new String[] {
-			"one_sentence", "two_sentences", "abbreviation", "quotation_marks",
-			"word_with_a_hyphen", "long_text", "appostrophes" };
+		"one_sentence", "two_sentences", "abbreviation", "quotation_marks",
+		"word_with_a_hyphen", "long_text", "appostrophes", "empty",
+		"one_word", "dot_only", "question_mark", "exclamation_mark" };
 
 	public ConcordanceProcessorTest(String fileNameBeginning)
 			throws IOException {

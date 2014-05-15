@@ -32,7 +32,10 @@ public class ConcordanceProcessor {
 		if (Character.isLetter(c)) {
 			currentWord.append(c);
 		} else {
-			if (c == '.') {
+			if ((c == '?' || c == '!') && isSentenceEnd()) {
+				addWordOccurance();
+				currentSentenceNumber++;
+			} else if (c == '.') {
 				if (isSentenceEnd()) {
 					addWordOccurance();
 					currentSentenceNumber++;
@@ -75,4 +78,4 @@ public class ConcordanceProcessor {
 		currentWord = new StringBuilder();
 	}
 
-}
+	}
