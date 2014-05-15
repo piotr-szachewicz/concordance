@@ -1,0 +1,7 @@
+fishing {2:0,1}
+go {1:0}
+i {1:1}
+love {1:1}
+said {1:1}
+she {1:1}
+we'll {1:0}
