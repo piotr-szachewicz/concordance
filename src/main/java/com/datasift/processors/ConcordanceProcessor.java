@@ -1,20 +1,15 @@
-package com.datasift;
+package com.datasift.processors;
 
 import com.datasift.model.Concordance;
 import com.datasift.model.WordOccurance;
 
-public class ConcordanceProcessor {
+public class ConcordanceProcessor extends AbstractConcordanceProcessor {
 
 	private char[] text;
 	private int currentPosition;
-	private int currentSentenceNumber;
 	private StringBuilder currentWord;
-	private Concordance concordance;
 
 	public String process(String text) {
-		// StringTokenizer tokenizer = new StringTokenizer(input, " ");
-		// another possible solution would be to use StringTokenizer
-
 		this.text = text.toCharArray();
 		currentSentenceNumber = 0;
 		resetCurrentWord();
@@ -33,12 +28,10 @@ public class ConcordanceProcessor {
 			currentWord.append(c);
 		} else {
 			if ((c == '?' || c == '!') && isSentenceEnd()) {
-				addWordOccurance();
-				currentSentenceNumber++;
+				sentenceEnd();
 			} else if (c == '.') {
 				if (isSentenceEnd()) {
-					addWordOccurance();
-					currentSentenceNumber++;
+					sentenceEnd();
 				} else {
 					currentWord.append(c);
 				}
@@ -73,9 +66,16 @@ public class ConcordanceProcessor {
 			resetCurrentWord();
 		}
 	}
+	
+	protected void sentenceEnd() {
+		//if (currentWord.length() > 0) {
+		addWordOccurance();
+		currentSentenceNumber++;
+		//}
+	}
 
 	protected void resetCurrentWord() {
 		currentWord = new StringBuilder();
 	}
 
-	}
+}

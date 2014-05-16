@@ -4,6 +4,10 @@ import java.io.IOException;
 
 import org.apache.commons.io.IOUtils;
 
+import com.datasift.processors.AbstractConcordanceProcessor;
+import com.datasift.processors.ConcordanceProcessor;
+import com.datasift.processors.RegexConcordanceProcessor;
+
 public class ConcordanceProcessorApplication {
 
 	public static void main(String args[]) {
@@ -12,7 +16,8 @@ public class ConcordanceProcessorApplication {
 
 			String input = IOUtils.toString(System.in);
 
-			ConcordanceProcessor concordanceProcessor = new ConcordanceProcessor();
+			//AbstractConcordanceProcessor concordanceProcessor = new ConcordanceProcessor();
+			AbstractConcordanceProcessor concordanceProcessor = new RegexConcordanceProcessor();
 			String output = concordanceProcessor.process(input);
 
 			System.out.print(output);

@@ -12,6 +12,8 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.Parameters;
 
+import com.datasift.processors.AbstractConcordanceProcessor;
+import com.datasift.processors.RegexConcordanceProcessor;
 import com.datasift.utils.ResourceUtils;
 
 @RunWith(Parameterized.class)
@@ -19,26 +21,28 @@ public class ConcordanceProcessorTest {
 
 	protected String input;
 	protected String expectedOutput;
-	private ConcordanceProcessor concordanceProcessor;
+	private AbstractConcordanceProcessor concordanceProcessor;
 
 	protected static String[] TEST_FILE_NAMES = new String[] {
 		"one_sentence", "two_sentences", "abbreviation", "quotation_marks",
 		"word_with_a_hyphen", "long_text", "appostrophes", "empty",
-		"one_word", "dot_only", "question_mark", "exclamation_mark" };
+		"one_word", "dot_only", "question_mark", "exclamation_mark", "multiple_dots",
+		"multiple_punctuation_marks_with_spaces" };
 
 	public ConcordanceProcessorTest(String fileName)
 			throws IOException {
 		input = ResourceUtils.readResource("./input/" + fileName + ".txt");
 		expectedOutput = ResourceUtils.readResource("./expected_output/" + fileName + ".txt");
-		concordanceProcessor = new ConcordanceProcessor();
+		concordanceProcessor = new RegexConcordanceProcessor();
 	}
 
 	@Test
 	public void testProcess() {
+//		System.out.println("PROCESSING: " + input + "#");
 		String actualOutput = processInput();
-
-		// System.out.print("EXPECTED=" + expectedOutput + "#");
-		// System.out.print("ACTUAL=" + actualOutput + "#");
+//
+//		System.out.print("EXPECTED=" + expectedOutput + "#");
+//		System.out.print("ACTUAL=" + actualOutput + "#");
 
 		assertEquals(expectedOutput, actualOutput);
 	}
