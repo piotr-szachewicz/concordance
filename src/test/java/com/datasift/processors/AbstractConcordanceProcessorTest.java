@@ -12,8 +12,6 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.Parameters;
 
-import com.datasift.processors.AbstractConcordanceProcessor;
-import com.datasift.processors.RegexConcordanceProcessorTest;
 import com.datasift.utils.ResourceUtils;
 
 @RunWith(Parameterized.class)
@@ -23,16 +21,10 @@ public abstract class AbstractConcordanceProcessorTest {
 	protected String expectedOutput;
 	private AbstractConcordanceProcessor concordanceProcessor;
 
-	protected static String[] TEST_FILE_NAMES = new String[] {
-		"one_sentence", "two_sentences", "abbreviation", "quotation_marks",
-		"word_with_a_hyphen", "long_text", "appostrophes", "empty",
-		"one_word", "dot_only", "question_mark", "exclamation_mark", "multiple_dots",
-		"multiple_punctuation_marks_with_spaces" };
-
-	public AbstractConcordanceProcessorTest(String fileName)
-			throws IOException {
-		input = ResourceUtils.readResource("/input/" + fileName + ".txt");
-		expectedOutput = ResourceUtils.readResource("/expected_output/" + fileName + ".txt");
+	public AbstractConcordanceProcessorTest(String fileName) throws IOException {
+		input = ResourceUtils.readResource(ResourceUtils.INPUT_TEST_FILES_DIRECTORY + fileName);
+		expectedOutput = ResourceUtils.readResource(ResourceUtils.EXPECTED_OUTPUT_TEST_FILES_DIRECTORY
+				+ fileName);
 		concordanceProcessor = createConcordanceProcessor();
 	}
 
@@ -40,11 +32,11 @@ public abstract class AbstractConcordanceProcessorTest {
 
 	@Test
 	public void testProcess() {
-//		System.out.println("PROCESSING: " + input + "#");
+		// System.out.println("PROCESSING: " + input + "#");
 		String actualOutput = processInput();
-//
-//		System.out.print("EXPECTED=" + expectedOutput + "#");
-//		System.out.print("ACTUAL=" + actualOutput + "#");
+		//
+		// System.out.print("EXPECTED=" + expectedOutput + "#");
+		// System.out.print("ACTUAL=" + actualOutput + "#");
 
 		assertEquals(expectedOutput, actualOutput);
 	}
@@ -55,9 +47,10 @@ public abstract class AbstractConcordanceProcessorTest {
 
 	@Parameters(name = "{index}: {0})")
 	public static Collection<String[]> getFileNamesParameters() {
+
 		List<String[]> parameters = new ArrayList<String[]>();
-		for (String fileBeginning : TEST_FILE_NAMES) {
-			parameters.add(new String[] { fileBeginning });
+		for (String fileName : ResourceUtils.getInputTestFileNames()) {
+			parameters.add(new String[] { fileName });
 		}
 		return parameters;
 	}
