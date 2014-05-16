@@ -5,6 +5,12 @@ import java.util.regex.Pattern;
 
 import org.apache.commons.lang.StringUtils;
 
+/**
+ * An implementation of concordance processor that analyzes the
+ * input text using regular expressions.
+ *
+ * @author Piotr Szachewicz
+ */
 public class RegexConcordanceProcessor extends AbstractConcordanceProcessor {
 
 	protected static String SENTENCE_REGEX = "([A-Za-z].*?)[.?!]+(?! ?[a-z:;,-])";
@@ -22,6 +28,15 @@ public class RegexConcordanceProcessor extends AbstractConcordanceProcessor {
 		}
 	}
 
+	/**
+	 * In case if the input text does not end with
+	 * a fullstop, exclamation mark or question mark,
+	 * this method adds a fullstop at the end of the text.
+	 *
+	 * @param text input text
+	 * @return the input text that ends with some sentence-finishing
+	 * symbol (fullstop, exclamation mark or question mark).
+	 */
 	protected String addFullStopIfNecessary(String text) {
 		text = StringUtils.strip(text, "\\s");
 		if (!StringUtils.endsWithAny(text, new String[] { ".", "!", "?" })) {

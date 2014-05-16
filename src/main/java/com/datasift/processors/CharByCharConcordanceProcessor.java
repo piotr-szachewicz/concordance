@@ -2,6 +2,12 @@ package com.datasift.processors;
 
 import com.datasift.model.WordOccurance;
 
+/**
+ * An implementation of concordance processor that 
+ * analyzes the input text character after character.
+ *
+ * @author Piotr Szachewicz
+ */
 public class CharByCharConcordanceProcessor extends
 		AbstractConcordanceProcessor {
 

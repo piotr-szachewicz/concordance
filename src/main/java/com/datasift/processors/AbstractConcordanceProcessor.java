@@ -3,6 +3,11 @@ package com.datasift.processors;
 import com.datasift.model.Concordance;
 import com.datasift.model.WordOccurance;
 
+/**
+ * An abstract class for ConcordanceProcessors. 
+ *
+ * @author Piotr Szachewicz
+ */
 public abstract class AbstractConcordanceProcessor {
 
 	protected Concordance concordance;
@@ -13,6 +18,12 @@ public abstract class AbstractConcordanceProcessor {
 		concordance = new Concordance();
 	}
 
+	/**
+	 * Returns a string representing the concordance for the given
+	 * text.
+	 * @param text the input text for the concordance calculations.
+	 * @return the string represantation of the concordance.
+	 */
 	public String process(String text) {
 		reset();
 		calculateConcordance(text);

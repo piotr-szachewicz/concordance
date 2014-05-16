@@ -14,6 +14,12 @@ import com.datasift.processors.AbstractConcordanceProcessor;
 import com.datasift.processors.CharByCharConcordanceProcessor;
 import com.datasift.processors.RegexConcordanceProcessor;
 
+/**
+ * This class contains the entry point of the program.
+ *
+ * @author Piotr Szachewicz
+ *
+ */
 public class ConcordanceProcessorApplication {
 
 	public static void main(String args[]) {
