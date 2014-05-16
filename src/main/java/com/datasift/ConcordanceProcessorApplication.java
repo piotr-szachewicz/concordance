@@ -5,7 +5,6 @@ import java.io.IOException;
 import org.apache.commons.io.IOUtils;
 
 import com.datasift.processors.AbstractConcordanceProcessor;
-import com.datasift.processors.ConcordanceProcessor;
 import com.datasift.processors.RegexConcordanceProcessor;
 
 public class ConcordanceProcessorApplication {

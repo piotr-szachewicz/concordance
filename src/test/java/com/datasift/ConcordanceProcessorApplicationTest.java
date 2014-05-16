@@ -7,8 +7,12 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.PrintStream;
 
+import com.datasift.processors.AbstractConcordanceProcessor;
+import com.datasift.processors.AbstractConcordanceProcessorTest;
+import com.datasift.processors.RegexConcordanceProcessor;
+
 public class ConcordanceProcessorApplicationTest extends
-		ConcordanceProcessorTest {
+		AbstractConcordanceProcessorTest {
 
 	private PrintStream originalOutputStream;
 
@@ -43,6 +47,11 @@ public class ConcordanceProcessorApplicationTest extends
 
 	protected void resetOutputStreamToDefaults() {
 		System.setOut(originalOutputStream);
+	}
+
+	@Override
+	protected AbstractConcordanceProcessor createConcordanceProcessor() {
+		return new RegexConcordanceProcessor();
 	}
 
 }

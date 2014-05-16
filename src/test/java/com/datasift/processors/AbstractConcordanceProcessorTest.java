@@ -1,4 +1,4 @@
-package com.datasift;
+package com.datasift.processors;
 
 import static org.junit.Assert.assertEquals;
 
@@ -13,11 +13,11 @@ import org.junit.runners.Parameterized;
 import org.junit.runners.Parameterized.Parameters;
 
 import com.datasift.processors.AbstractConcordanceProcessor;
-import com.datasift.processors.RegexConcordanceProcessor;
+import com.datasift.processors.RegexConcordanceProcessorTest;
 import com.datasift.utils.ResourceUtils;
 
 @RunWith(Parameterized.class)
-public class ConcordanceProcessorTest {
+public abstract class AbstractConcordanceProcessorTest {
 
 	protected String input;
 	protected String expectedOutput;
@@ -29,12 +29,14 @@ public class ConcordanceProcessorTest {
 		"one_word", "dot_only", "question_mark", "exclamation_mark", "multiple_dots",
 		"multiple_punctuation_marks_with_spaces" };
 
-	public ConcordanceProcessorTest(String fileName)
+	public AbstractConcordanceProcessorTest(String fileName)
 			throws IOException {
-		input = ResourceUtils.readResource("./input/" + fileName + ".txt");
-		expectedOutput = ResourceUtils.readResource("./expected_output/" + fileName + ".txt");
-		concordanceProcessor = new RegexConcordanceProcessor();
+		input = ResourceUtils.readResource("/input/" + fileName + ".txt");
+		expectedOutput = ResourceUtils.readResource("/expected_output/" + fileName + ".txt");
+		concordanceProcessor = createConcordanceProcessor();
 	}
+
+	protected abstract AbstractConcordanceProcessor createConcordanceProcessor();
 
 	@Test
 	public void testProcess() {

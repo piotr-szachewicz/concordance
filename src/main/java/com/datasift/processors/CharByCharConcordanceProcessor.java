@@ -3,15 +3,18 @@ package com.datasift.processors;
 import com.datasift.model.Concordance;
 import com.datasift.model.WordOccurance;
 
-public class ConcordanceProcessor extends AbstractConcordanceProcessor {
+public class CharByCharConcordanceProcessor extends
+		AbstractConcordanceProcessor {
 
 	private char[] text;
 	private int currentPosition;
 	private StringBuilder currentWord;
+	private int wordsInCurrentSentence;
 
 	public String process(String text) {
 		this.text = text.toCharArray();
 		currentSentenceNumber = 0;
+		wordsInCurrentSentence = 0;
 		resetCurrentWord();
 		concordance = new Concordance();
 
@@ -63,15 +66,17 @@ public class ConcordanceProcessor extends AbstractConcordanceProcessor {
 		if (currentWord.length() > 0) {
 			concordance.addWordOccurance(currentWord.toString().toLowerCase(),
 					new WordOccurance(currentSentenceNumber));
+			wordsInCurrentSentence++;
 			resetCurrentWord();
 		}
 	}
-	
+
 	protected void sentenceEnd() {
-		//if (currentWord.length() > 0) {
-		addWordOccurance();
-		currentSentenceNumber++;
-		//}
+		if (currentWord.length() > 0 || wordsInCurrentSentence > 0) {
+			addWordOccurance();
+			currentSentenceNumber++;
+			wordsInCurrentSentence = 0;
+		}
 	}
 
 	protected void resetCurrentWord() {

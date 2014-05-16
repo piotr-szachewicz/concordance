@@ -5,14 +5,11 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 
-import com.datasift.ConcordanceProcessorTest;
-import com.datasift.processors.ConcordanceProcessor;
-
 public class ResourceUtils {
 
 	public static String readResource(String file) throws IOException {
-		InputStream inputStream = ConcordanceProcessorTest.class
-				.getResourceAsStream(file);
+		InputStream inputStream = ClassLoader.class
+				.getResourceAsStream("/com/datasift" + file);
 		BufferedReader reader = new BufferedReader(new InputStreamReader(
 				inputStream));
 
