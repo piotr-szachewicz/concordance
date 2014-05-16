@@ -10,6 +10,8 @@ import java.util.Collection;
 import java.util.List;
 import java.util.regex.Pattern;
 
+import org.apache.commons.lang.SystemUtils;
+
 public class ResourceUtils {
 
 	public static String INPUT_TEST_FILES_DIRECTORY = "/com/datasift/input/";
@@ -18,8 +20,8 @@ public class ResourceUtils {
 	public static List<String> getInputTestFileNames() {
 		List<String> fileNames = new ArrayList<String>();
 
-		Pattern pattern = Pattern.compile(".*" + INPUT_TEST_FILES_DIRECTORY
-				+ ".*.txt");
+		String inputFilesPath = adaptPathToOS(INPUT_TEST_FILES_DIRECTORY);
+		Pattern pattern = Pattern.compile(".*" + inputFilesPath + ".*.txt");
 		final Collection<String> filePaths = ResourceList.getResources(pattern);
 
 		for (String filePath : filePaths) {
@@ -28,6 +30,13 @@ public class ResourceUtils {
 		}
 
 		return fileNames;
+	}
+
+	protected static String adaptPathToOS(String path) {
+		if (SystemUtils.IS_OS_WINDOWS) {
+			return path.replaceAll("/", "\\\\\\\\");
+		}
+		return path;
 	}
 
 	public static String readResource(String file) throws IOException {

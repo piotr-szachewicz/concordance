@@ -10,6 +10,8 @@ import java.util.zip.ZipEntry;
 import java.util.zip.ZipException;
 import java.util.zip.ZipFile;
 
+import org.apache.commons.lang.SystemUtils;
+
 /**
  * Lists resources available from the classpath. This class is copied from
  * http://stackoverflow.com/a/3923182/2919787.
@@ -27,7 +29,7 @@ public class ResourceList {
 	public static Collection<String> getResources(final Pattern pattern) {
 		final ArrayList<String> retval = new ArrayList<String>();
 		final String classPath = System.getProperty("java.class.path", ".");
-		final String[] classPathElements = classPath.split(":");
+		final String[] classPathElements = classPath.split(File.pathSeparator);
 		for (final String element : classPathElements) {
 			retval.addAll(getResources(element, pattern));
 		}
