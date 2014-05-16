@@ -24,26 +24,36 @@ and `a,b,c,...` are the sentence numbers in which the word occured.
 1. HOW TO USE
 ------------------------
 
+### Run the program from the binary release
+
+There is a binary release available on GitHub: https://github.com/piotr-szachewicz/concordance/releases.
+
+After downloading the JAR, you can run:
+
+	java -jar concordance.jar
+
+Now you can input some text, press `Ctrl-D` (or `Ctrl-Z`+`Enter` on Windows) to finish and the concordance for the text will be displayed.
+
+Another use case is to display concordance for a given input file:
+
+    java -jar concordance.jar < file_name
+
+### Run the program from the source code
+
 Download the source code:
 
     git clone https://github.com/piotr-szachewicz/concordance.git
 
-Compile and package the code:
+Compile the code:
 
     cd concordance
 	mvn package
 
 This creates a concordance.jar file in the target directory.
-To run the program:
+To run the program execute:
 	
 	cd target/
 	java -jar concordance.jar
-	
-Now you can input some text, press `Ctrl-D` to finish and the concordance for the text will be displayed.
-
-Another use case is to display concordance for a given file:
-
-    java -jar concordance.jar < file_name
 
 2. IMPLEMENTATION DETAILS
 -------------------------
