@@ -5,15 +5,11 @@ import java.util.regex.Pattern;
 
 import org.apache.commons.lang.StringUtils;
 
-import com.datasift.model.Concordance;
-
 public class RegexConcordanceProcessor extends AbstractConcordanceProcessor {
 
 	protected static String SENTENCE_REGEX = "([A-Za-z].*?)[.?!]+(?! ?[a-z:;,-])";
 
-	public String process(String text) {
-		currentSentenceNumber = 0;
-		concordance = new Concordance();
+	protected void calculateConcordance(String text) {
 		text = addFullStopIfNecessary(text);
 
 		Pattern pattern = Pattern.compile(SENTENCE_REGEX, Pattern.DOTALL);
@@ -24,8 +20,6 @@ public class RegexConcordanceProcessor extends AbstractConcordanceProcessor {
 			processSentence(sentence);
 			currentSentenceNumber++;
 		}
-
-		return concordance.toString();
 	}
 
 	protected String addFullStopIfNecessary(String text) {

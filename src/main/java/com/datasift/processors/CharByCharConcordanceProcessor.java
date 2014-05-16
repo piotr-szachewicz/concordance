@@ -1,6 +1,5 @@
 package com.datasift.processors;
 
-import com.datasift.model.Concordance;
 import com.datasift.model.WordOccurance;
 
 public class CharByCharConcordanceProcessor extends
@@ -11,17 +10,19 @@ public class CharByCharConcordanceProcessor extends
 	private StringBuilder currentWord;
 	private int wordsInCurrentSentence;
 
-	public String process(String text) {
-		this.text = text.toCharArray();
-		currentSentenceNumber = 0;
+	@Override
+	protected void reset() {
+		super.reset();
 		wordsInCurrentSentence = 0;
 		resetCurrentWord();
-		concordance = new Concordance();
+	}
+
+	protected void calculateConcordance(String text) {
+		this.text = text.toCharArray();
 
 		for (currentPosition = 0; currentPosition < this.text.length; currentPosition++) {
 			processCurrentCharacter();
 		}
-		return concordance.toString();
 	}
 
 	protected void processCurrentCharacter() {
